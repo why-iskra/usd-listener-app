@@ -5,11 +5,8 @@ import android.app.NotificationManager
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.work.*
-import ru.unit.usd_listener.Config
 import ru.unit.usd_listener.R
-import ru.unit.usd_listener.UsdNotificationWorker
-import java.util.concurrent.TimeUnit
+import ru.unit.usd_listener.service.UsdNotificationWorker
 
 class MainActivity : AppCompatActivity() {
     companion object {

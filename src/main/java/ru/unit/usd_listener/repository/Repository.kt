@@ -1,10 +1,9 @@
-package ru.unit.usd_listener
+package ru.unit.usd_listener.repository
 
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.android.*
 import io.ktor.client.features.*
-import io.ktor.client.features.get
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import org.xmlpull.v1.XmlPullParser

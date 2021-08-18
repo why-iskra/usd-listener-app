@@ -1,4 +1,4 @@
-package ru.unit.usd_listener
+package ru.unit.usd_listener.utils
 
 import android.content.Context
 import android.net.ConnectivityManager

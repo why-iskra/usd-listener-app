@@ -1,4 +1,4 @@
-package ru.unit.usd_listener
+package ru.unit.usd_listener.service
 
 import android.app.Notification
 import android.app.NotificationManager
@@ -9,7 +9,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import ru.unit.usd_listener.R
+import ru.unit.usd_listener.repository.Repository
 import ru.unit.usd_listener.ui.MainActivity
+import ru.unit.usd_listener.utils.Config
 import java.util.concurrent.TimeUnit
 
 class UsdNotificationWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
@@ -34,7 +37,9 @@ class UsdNotificationWorker(context: Context, workerParams: WorkerParameters) : 
             }
         }
 
-        private fun getNotificationValue(context: Context) = context.getSharedPreferences(Config.SHARED_PREFERENCES, Context.MODE_PRIVATE).getFloat(context.getString(R.string.pref_notification_value), 0f)
+        private fun getNotificationValue(context: Context) = context.getSharedPreferences(Config.SHARED_PREFERENCES, Context.MODE_PRIVATE).getFloat(context.getString(
+            R.string.pref_notification_value
+        ), 0f)
     }
 
     override fun doWork(): Result {

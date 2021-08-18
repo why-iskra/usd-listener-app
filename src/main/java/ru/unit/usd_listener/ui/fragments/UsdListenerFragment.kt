@@ -14,7 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.unit.usd_listener.*
 import ru.unit.usd_listener.databinding.FragmentUsdListenerBinding
+import ru.unit.usd_listener.repository.Repository
+import ru.unit.usd_listener.service.UsdNotificationWorker
 import ru.unit.usd_listener.ui.viewmodels.UsdListenerViewModel
+import ru.unit.usd_listener.utils.AppStatus
+import ru.unit.usd_listener.utils.Config
 import ru.unit.usd_listener.views.Chart
 import kotlin.math.ceil
 
