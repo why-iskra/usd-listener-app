@@ -15,4 +15,5 @@
     <string name="no_internet">No Internet</string>
     <string name="failed_to_connection_to_repository">Failed to connection to repository</string>
     <string name="disable">disable</string>
+    <string name="written_by_unit">written by ũŋit</string>
 </resources>
