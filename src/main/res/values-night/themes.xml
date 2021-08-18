@@ -1,0 +1,23 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Usdlistener" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/matt_white</item>
+        <item name="colorPrimaryVariant">@color/silver</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/gray</item>
+        <item name="colorSecondaryVariant">@color/arsenic</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
+        <!-- Background -->
+        <item name="android:background">@color/black</item>
+        <!-- Chart -->
+        <item name="dataLineColor">@color/matt_white</item>
+        <item name="levelLineColor">@color/gray</item>
+        <item name="textColor">@color/silver</item>
+        <!-- Scrollbar thumb -->
+        <item name="scrollbarThumbColor">@color/arsenic</item>
+    </style>
+</resources>
