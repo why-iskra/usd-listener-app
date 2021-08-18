@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import ru.unit.usd_listener.Config
@@ -26,9 +28,25 @@ class NotificationSettingsDialogFragment(private val onDismissListener: DialogIn
 
         binding.okButton.setOnClickListener {
             val sharedPref = requireContext().getSharedPreferences(Config.SHARED_PREFERENCES, Context.MODE_PRIVATE)
-            val value = (binding.valueUsdNotificationView.text ?: "0").toString().toFloat()
+            val value = (binding.valueUsdNotificationView.text ?: "0").toString().toFloatOrNull()
+            if(value == null) {
+                DrawableCompat.setTint(binding.valueUsdNotificationView.background, requireContext().getColor(R.color.amaranth))
+                return@setOnClickListener
+            }
+
             with (sharedPref.edit()) {
                 putFloat(getString(R.string.pref_notification_value), value)
+                apply()
+            }
+
+            onDismissListener.onDismiss(dialog)
+            dialog?.dismiss()
+        }
+
+        binding.disableButton.setOnClickListener {
+            val sharedPref = requireContext().getSharedPreferences(Config.SHARED_PREFERENCES, Context.MODE_PRIVATE)
+            with (sharedPref.edit()) {
+                putFloat(getString(R.string.pref_notification_value), 0f)
                 apply()
             }
 

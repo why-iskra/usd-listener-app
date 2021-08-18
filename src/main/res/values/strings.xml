@@ -6,7 +6,7 @@
 	<string name="pref_notification_value">notification_value</string>
     <string name="russian_bank_usd">Russian Bank USD</string>
     <string name="refresh_repository">Refresh repository</string>
-    <string name="price_within_30_days">Price within 30 days</string>
+    <string name="value_within_30_days">Value within 30 days</string>
     <string name="welcome_to_usd_listener">Welcome to USD Listener</string>
     <string name="notification_settings">Notification Settings</string>
     <string name="usd_rub_value">USD/RUB value</string>
@@ -14,4 +14,5 @@
     <string name="cancel">Cancel</string>
     <string name="no_internet">No Internet</string>
     <string name="failed_to_connection_to_repository">Failed to connection to repository</string>
+    <string name="disable">disable</string>
 </resources>

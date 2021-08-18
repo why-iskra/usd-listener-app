@@ -145,7 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunito_extrabold"
-                android:text="@string/price_within_30_days"
+                android:text="@string/value_within_30_days"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textSize="20sp" />

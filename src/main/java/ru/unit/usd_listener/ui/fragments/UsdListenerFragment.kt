@@ -12,10 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.unit.usd_listener.AppStatus
-import ru.unit.usd_listener.Config
-import ru.unit.usd_listener.R
-import ru.unit.usd_listener.Repository
+import ru.unit.usd_listener.*
 import ru.unit.usd_listener.databinding.FragmentUsdListenerBinding
 import ru.unit.usd_listener.ui.viewmodels.UsdListenerViewModel
 import ru.unit.usd_listener.views.Chart
@@ -109,7 +106,10 @@ class UsdListenerFragment : Fragment() {
     private fun getNotificationValue() = requireContext().getSharedPreferences(Config.SHARED_PREFERENCES, Context.MODE_PRIVATE).getFloat(getString(R.string.pref_notification_value), 0f)
 
     private fun updateNotificationSettingsButtonText(binding: FragmentUsdListenerBinding) {
-        binding.notificationButton.text = String.format("Notification if >%.2f", getNotificationValue())
+        UsdNotificationWorker.createOrDisable(requireContext())
+
+        val value = getNotificationValue()
+        binding.notificationButton.text = if(value == 0f) "activate notification" else String.format("Notification if >%.2f", value)
     }
 
     private fun refreshRepository(binding: FragmentUsdListenerBinding) {

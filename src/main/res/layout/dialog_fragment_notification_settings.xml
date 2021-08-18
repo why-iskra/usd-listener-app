@@ -43,26 +43,24 @@
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
-            android:gravity="end"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/valueUsdNotificationView">
 
             <Button
                 android:id="@+id/okButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/nunito_bold"
+                android:gravity="center"
                 android:text="@string/ok"
                 android:textColor="?attr/colorPrimary"
                 app:cornerRadius="24dp"
@@ -72,12 +70,36 @@
                 android:id="@+id/cancalButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/nunito_bold"
+                android:gravity="center"
                 android:text="@string/cancel"
                 android:textColor="?attr/colorPrimary"
                 app:cornerRadius="24dp"
                 app:rippleColor="?attr/colorPrimaryVariant" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/disableButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/nunito_bold"
+            android:gravity="center"
+            android:text="@string/disable"
+            android:textColor="?attr/colorPrimary"
+            app:cornerRadius="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/valueUsdNotificationView"
+            app:rippleColor="?attr/colorPrimaryVariant" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
