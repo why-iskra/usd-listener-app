@@ -33,6 +33,7 @@ class NoInternetDialogFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         dialog?.window?.setBackgroundDrawableResource(R.drawable.background_dialog_fragment_notification_settings)
+        dialog?.window?.setWindowAnimations(R.style.AlertDialogAnimation)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 }

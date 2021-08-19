@@ -22,6 +22,10 @@ import ru.unit.usd_listener.utils.Config
 import ru.unit.usd_listener.views.Chart
 import kotlin.math.ceil
 
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+
+
 class UsdListenerFragment : Fragment() {
 
     private val model: UsdListenerViewModel by activityViewModels()
@@ -78,8 +82,26 @@ class UsdListenerFragment : Fragment() {
                 lines[i] = Chart.LevelLine(level.toInt().toString(), level)
             }
 
-            binding.monthUsdValueView.adapter = Adapter(it.reversed())
-            binding.usdValueView.text = String.format("%.2f $/₽", it.last().value)
+
+            val animFadeIn: Animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in)
+            val animFadeOut: Animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_out)
+
+            binding.monthUsdValueView.startAnimation(animFadeOut)
+            binding.usdValueView.startAnimation(animFadeOut)
+
+            animFadeOut.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) { }
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    binding.monthUsdValueView.adapter = Adapter(it.reversed())
+                    binding.usdValueView.text = String.format("%.2f $/₽", it.last().value)
+
+                    binding.monthUsdValueView.startAnimation(animFadeIn)
+                    binding.usdValueView.startAnimation(animFadeIn)
+                }
+
+                override fun onAnimationRepeat(animation: Animation?) { }
+            })
 
             binding.usdChart.update(lines, elements, true) {
                 showRefreshButton(binding)
@@ -90,13 +112,41 @@ class UsdListenerFragment : Fragment() {
     }
 
     private fun showRefreshButton(binding: FragmentUsdListenerBinding) {
-        binding.refreshButton.visibility = View.VISIBLE
-        binding.progressBar.visibility = View.GONE
+        val animFadeIn: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_in_short)
+        val animFadeOut: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_out_short)
+
+        binding.progressBar.startAnimation(animFadeOut)
+        animFadeOut.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation?) { }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                binding.progressBar.visibility = View.GONE
+
+                binding.refreshButton.startAnimation(animFadeIn)
+                binding.refreshButton.visibility = View.VISIBLE
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) { }
+        })
     }
 
     private fun hideRefreshButton(binding: FragmentUsdListenerBinding) {
-        binding.refreshButton.visibility = View.GONE
-        binding.progressBar.visibility = View.VISIBLE
+        val animFadeIn: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_in_short)
+        val animFadeOut: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_out_short)
+
+        binding.refreshButton.startAnimation(animFadeOut)
+        animFadeOut.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation?) { }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                binding.refreshButton.visibility = View.GONE
+
+                binding.progressBar.startAnimation(animFadeIn)
+                binding.progressBar.visibility = View.VISIBLE
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) { }
+        })
     }
 
     private fun showNotificationSettingsDialog() {
