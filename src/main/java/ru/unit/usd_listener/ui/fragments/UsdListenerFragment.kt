@@ -52,7 +52,6 @@ class UsdListenerFragment : Fragment() {
             showNotificationSettingsDialog()
         }
         binding.refreshButton.setOnClickListener {
-            hideRefreshButton(binding)
             refreshRepository(binding)
         }
 
@@ -153,6 +152,8 @@ class UsdListenerFragment : Fragment() {
         })
     }
 
+    private fun refreshButtonIsHide(binding: FragmentUsdListenerBinding) = (binding.progressBar.visibility == View.VISIBLE)
+
     private fun showNotificationSettingsDialog() {
         dialogNotificationSettings.show(childFragmentManager, "notificationSettingsDialog")
     }
@@ -172,9 +173,14 @@ class UsdListenerFragment : Fragment() {
 
     private fun refreshRepository(binding: FragmentUsdListenerBinding) {
         if(AppStatus.isOnline(requireContext())) {
+            if(!refreshButtonIsHide(binding)) {
+                hideRefreshButton(binding)
+            }
             model.refreshRepository()
         } else {
-            showRefreshButton(binding)
+            if(refreshButtonIsHide(binding)) {
+                showRefreshButton(binding)
+            }
             showNoInternetDialog()
         }
     }
