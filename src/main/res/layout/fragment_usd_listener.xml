@@ -86,16 +86,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/refresh_repository"
                 android:minWidth="32dp"
                 android:minHeight="32dp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/textView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/textView"
                 app:layout_constraintTop_toTopOf="@+id/textView"
                 app:srcCompat="@drawable/ic_round_refresh_24"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                android:contentDescription="@string/refresh_repository" />
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -103,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@+id/textView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"

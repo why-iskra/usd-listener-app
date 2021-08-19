@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
@@ -21,9 +23,6 @@ import ru.unit.usd_listener.utils.AppStatus
 import ru.unit.usd_listener.utils.Config
 import ru.unit.usd_listener.views.Chart
 import kotlin.math.ceil
-
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 
 
 class UsdListenerFragment : Fragment() {
@@ -93,11 +92,8 @@ class UsdListenerFragment : Fragment() {
                 override fun onAnimationStart(animation: Animation?) { }
 
                 override fun onAnimationEnd(animation: Animation?) {
-                    binding.monthUsdValueView.adapter = Adapter(it.reversed())
-                    binding.usdValueView.text = String.format("%.2f $/₽", it.last().value)
-
-                    binding.monthUsdValueView.startAnimation(animFadeIn)
-                    binding.usdValueView.startAnimation(animFadeIn)
+                    binding.monthUsdValueView.visibility = View.INVISIBLE
+                    binding.usdValueView.visibility = View.INVISIBLE
                 }
 
                 override fun onAnimationRepeat(animation: Animation?) { }
@@ -105,6 +101,14 @@ class UsdListenerFragment : Fragment() {
 
             binding.usdChart.update(lines, elements, true) {
                 showRefreshButton(binding)
+
+                binding.monthUsdValueView.adapter = Adapter(it.reversed())
+                binding.usdValueView.text = String.format("%.2f $/₽", it.last().value)
+
+                binding.monthUsdValueView.startAnimation(animFadeIn)
+                binding.usdValueView.startAnimation(animFadeIn)
+                binding.monthUsdValueView.visibility = View.VISIBLE
+                binding.usdValueView.visibility = View.VISIBLE
             }
         }
 
@@ -112,8 +116,8 @@ class UsdListenerFragment : Fragment() {
     }
 
     private fun showRefreshButton(binding: FragmentUsdListenerBinding) {
-        val animFadeIn: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_in_short)
-        val animFadeOut: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_out_short)
+        val animFadeIn: Animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in)
+        val animFadeOut: Animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_out)
 
         binding.progressBar.startAnimation(animFadeOut)
         animFadeOut.setAnimationListener(object : Animation.AnimationListener {
@@ -131,8 +135,8 @@ class UsdListenerFragment : Fragment() {
     }
 
     private fun hideRefreshButton(binding: FragmentUsdListenerBinding) {
-        val animFadeIn: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_in_short)
-        val animFadeOut: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_out_short)
+        val animFadeIn: Animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in)
+        val animFadeOut: Animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_out)
 
         binding.refreshButton.startAnimation(animFadeOut)
         animFadeOut.setAnimationListener(object : Animation.AnimationListener {

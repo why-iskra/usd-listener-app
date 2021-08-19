@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         createNotificationChannel()
-
         UsdNotificationWorker.createOrDisable(applicationContext)
     }
 
