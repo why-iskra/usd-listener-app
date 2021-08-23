@@ -10,14 +10,18 @@
 
 	<style name="Theme.Usdlistener.Dialog.Common" parent="Theme.Usdlistener.Dialog">
 		<item name="android:windowBackground">@drawable/background_dialog_fragment</item>
-		<item name="android:windowEnterAnimation">@anim/fade_in_short</item>
-		<item name="android:windowExitAnimation">@anim/fade_out_short</item>
+		<item name="android:windowAnimationStyle">@style/Theme.Usdlistener.Dialog.WindowAnimation</item>
 
 		<item name="android:scrollbarThumbHorizontal">@drawable/scrollbar_thumb</item>
 		<item name="android:scrollbarThumbVertical">@drawable/scrollbar_thumb</item>
 
 		<item name="materialButtonStyle">@style/Widget.Usdlistener.Button</item>
 		<item name="editTextStyle">@style/Widget.Usdlistener.EditText</item>
+	</style>
+
+	<style name="Theme.Usdlistener.Dialog.WindowAnimation">
+		<item name="android:windowEnterAnimation">@anim/fade_in_short</item>
+		<item name="android:windowExitAnimation">@anim/fade_out_short</item>
 	</style>
 
 	<style name="Widget.Usdlistener.Button" parent="Widget.MaterialComponents.Button">
