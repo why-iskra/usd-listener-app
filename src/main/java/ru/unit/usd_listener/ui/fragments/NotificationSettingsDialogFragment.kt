@@ -4,16 +4,14 @@ import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import ru.unit.usd_listener.utils.Config
+import androidx.fragment.app.FragmentManager
 import ru.unit.usd_listener.R
 import ru.unit.usd_listener.databinding.DialogFragmentNotificationSettingsBinding
+import ru.unit.usd_listener.utils.Config
 
 
 class NotificationSettingsDialogFragment(private val onDismissListener: DialogInterface.OnDismissListener) : DialogFragment() {
@@ -53,19 +51,18 @@ class NotificationSettingsDialogFragment(private val onDismissListener: DialogIn
             dialog?.dismiss()
         }
 
-        val builder = AlertDialog.Builder(requireContext())
+        val builder = AlertDialog.Builder(requireContext(), R.style.Theme_Usdlistener_Dialog_Common)
         builder.setView(binding.root)
 
         return builder.create()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        dialog?.window?.setBackgroundDrawableResource(R.drawable.background_dialog_fragment_notification_settings)
-        dialog?.window?.setWindowAnimations(R.style.AlertDialogAnimation)
-        return super.onCreateView(inflater, container, savedInstanceState)
+    override fun dismiss() {
+        if(isAdded) super.dismiss()
+    }
+
+    override fun show(manager: FragmentManager, tag: String?) {
+        dismiss() // if add, then dismiss
+        super.show(manager, tag)
     }
 }

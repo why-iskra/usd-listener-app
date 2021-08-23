@@ -114,6 +114,12 @@ class UsdListenerFragment : Fragment() {
         return binding.root
     }
 
+    override fun onPause() {
+        dialogNoInternet.dismiss()
+        dialogNotificationSettings.dismiss()
+        super.onPause()
+    }
+
     private fun showRefreshButton(binding: FragmentUsdListenerBinding) {
         val animFadeIn: Animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in)
         val animFadeOut: Animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_out)

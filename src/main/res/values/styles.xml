@@ -1,7 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<style name="AlertDialogAnimation">
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<style name="Theme.Usdlistener.Common" parent="Theme.Usdlistener">
+		<item name="android:scrollbarThumbHorizontal">@drawable/scrollbar_thumb</item>
+		<item name="android:scrollbarThumbVertical">@drawable/scrollbar_thumb</item>
+
+		<item name="materialButtonStyle">@style/Widget.Usdlistener.Button</item>
+		<item name="editTextStyle">@style/Widget.Usdlistener.EditText</item>
+	</style>
+
+	<style name="Theme.Usdlistener.Dialog.Common" parent="Theme.Usdlistener.Dialog">
+		<item name="android:windowBackground">@drawable/background_dialog_fragment</item>
 		<item name="android:windowEnterAnimation">@anim/fade_in_short</item>
 		<item name="android:windowExitAnimation">@anim/fade_out_short</item>
+
+		<item name="android:scrollbarThumbHorizontal">@drawable/scrollbar_thumb</item>
+		<item name="android:scrollbarThumbVertical">@drawable/scrollbar_thumb</item>
+
+		<item name="materialButtonStyle">@style/Widget.Usdlistener.Button</item>
+		<item name="editTextStyle">@style/Widget.Usdlistener.EditText</item>
+	</style>
+
+	<style name="Widget.Usdlistener.Button" parent="Widget.MaterialComponents.Button">
+		<item name="cornerRadius">24dp</item>
+		<item name="fontFamily">@font/nunito_bold</item>
+	</style>
+
+	<style name="Widget.Usdlistener.EditText" parent="Widget.AppCompat.EditText">
+		<item name="fontFamily">@font/nunito</item>
+	</style>
+
+	<style name="Container.Usdlistener.RecyclerView.Vertical" parent="">
+		<item name="android:fadingEdgeLength">24dp</item>
+		<item name="android:requiresFadingEdge">vertical</item>
+		<item name="android:scrollbars">vertical</item>
+	</style>
+
+	<style name="Container.Usdlistener.RecyclerView.Horizontal" parent="">
+		<item name="android:fadingEdgeLength">24dp</item>
+		<item name="android:requiresFadingEdge">horizontal</item>
+		<item name="android:scrollbars">horizontal</item>
 	</style>
 </resources>
