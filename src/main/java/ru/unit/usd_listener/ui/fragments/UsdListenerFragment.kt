@@ -72,8 +72,6 @@ class UsdListenerFragment : Fragment() {
                 Chart.Element(usd.simpleDate, usd.value)
             }.toTypedArray()
 
-            println(max - min)
-            println((max - min) / 4)
             val offset = ceil((max - min) / 4)
             for(i in 0 until 5) {
                 val level = (offset * i) + min
