@@ -42,10 +42,6 @@ class UsdListenerFragment : Fragment() {
         dialogNoInternet = parentFragmentManager
             .findFragmentByTag(NO_INTERNET_DIALOG_FRAGMENT_TAG) as? NoInternetDialogFragment ?: NoInternetDialogFragment()
 
-        if(dialogNoInternet.isAdded) {
-            dialogNoInternet.dismiss()
-        }
-
         super.onCreate(savedInstanceState)
     }
 
