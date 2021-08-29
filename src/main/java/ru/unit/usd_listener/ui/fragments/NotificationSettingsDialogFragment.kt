@@ -2,7 +2,6 @@ package ru.unit.usd_listener.ui.fragments
 
 import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.graphics.drawable.DrawableCompat
@@ -14,12 +13,14 @@ import ru.unit.usd_listener.databinding.DialogFragmentNotificationSettingsBindin
 import ru.unit.usd_listener.utils.Config
 
 
-class NotificationSettingsDialogFragment(private val onDismissListener: DialogInterface.OnDismissListener) : DialogFragment() {
+class NotificationSettingsDialogFragment() : DialogFragment() {
+
+    private var onDismissListener: () -> Unit = {}
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val binding = DataBindingUtil.inflate<DialogFragmentNotificationSettingsBinding>(requireActivity().layoutInflater, R.layout.dialog_fragment_notification_settings, null, false)
         binding.cancalButton.setOnClickListener {
-            onDismissListener.onDismiss(dialog)
+            onDismissListener()
             dialog?.dismiss()
         }
 
@@ -36,7 +37,7 @@ class NotificationSettingsDialogFragment(private val onDismissListener: DialogIn
                 apply()
             }
 
-            onDismissListener.onDismiss(dialog)
+            onDismissListener()
             dialog?.dismiss()
         }
 
@@ -47,7 +48,7 @@ class NotificationSettingsDialogFragment(private val onDismissListener: DialogIn
                 apply()
             }
 
-            onDismissListener.onDismiss(dialog)
+            onDismissListener()
             dialog?.dismiss()
         }
 
@@ -55,6 +56,10 @@ class NotificationSettingsDialogFragment(private val onDismissListener: DialogIn
         builder.setView(binding.root)
 
         return builder.create()
+    }
+
+    fun setOnDismissListener(listener: () -> Unit) {
+        onDismissListener = listener
     }
 
     override fun dismiss() {

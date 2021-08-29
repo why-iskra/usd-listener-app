@@ -27,9 +27,27 @@ import kotlin.math.ceil
 
 class UsdListenerFragment : Fragment() {
 
+    companion object {
+        private const val NOTIFICATION_SETTINGS_DIALOG_FRAGMENT_TAG = "notificationSettingsDialogFragment"
+        private const val NO_INTERNET_DIALOG_FRAGMENT_TAG = "noInternetDialogFragment"
+    }
+
     private val model: UsdListenerViewModel by activityViewModels()
     private lateinit var dialogNotificationSettings: NotificationSettingsDialogFragment
-    private val dialogNoInternet = NoInternetDialogFragment()
+    private lateinit var dialogNoInternet: NoInternetDialogFragment
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        dialogNotificationSettings = parentFragmentManager
+            .findFragmentByTag(NOTIFICATION_SETTINGS_DIALOG_FRAGMENT_TAG) as? NotificationSettingsDialogFragment ?: NotificationSettingsDialogFragment()
+        dialogNoInternet = parentFragmentManager
+            .findFragmentByTag(NO_INTERNET_DIALOG_FRAGMENT_TAG) as? NoInternetDialogFragment ?: NoInternetDialogFragment()
+
+        if(dialogNoInternet.isAdded) {
+            dialogNoInternet.dismiss()
+        }
+
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +56,7 @@ class UsdListenerFragment : Fragment() {
     ): View {
         val binding = DataBindingUtil.inflate<FragmentUsdListenerBinding>(inflater, R.layout.fragment_usd_listener, container, false)
 
-        dialogNotificationSettings = NotificationSettingsDialogFragment {
+        dialogNotificationSettings.setOnDismissListener {
             updateNotificationSettingsButtonText(binding)
         }
 
@@ -112,12 +130,6 @@ class UsdListenerFragment : Fragment() {
         return binding.root
     }
 
-    override fun onPause() {
-        dialogNoInternet.dismiss()
-        dialogNotificationSettings.dismiss()
-        super.onPause()
-    }
-
     private fun showRefreshButton(binding: FragmentUsdListenerBinding) {
         val animFadeIn: Animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in)
         val animFadeOut: Animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_out)
@@ -159,11 +171,15 @@ class UsdListenerFragment : Fragment() {
     private fun refreshButtonIsHide(binding: FragmentUsdListenerBinding) = (binding.progressBar.visibility == View.VISIBLE)
 
     private fun showNotificationSettingsDialog() {
-        dialogNotificationSettings.show(childFragmentManager, "notificationSettingsDialog")
+        if(!dialogNotificationSettings.isAdded) {
+            dialogNotificationSettings.show(parentFragmentManager, NOTIFICATION_SETTINGS_DIALOG_FRAGMENT_TAG)
+        }
     }
 
     private fun showNoInternetDialog() {
-        dialogNoInternet.show(childFragmentManager, "noInternetDialog")
+        if(!dialogNoInternet.isAdded) {
+            dialogNoInternet.show(parentFragmentManager, NO_INTERNET_DIALOG_FRAGMENT_TAG)
+        }
     }
 
     private fun getNotificationValue() = requireContext().getSharedPreferences(Config.SHARED_PREFERENCES, Context.MODE_PRIVATE).getFloat(getString(R.string.pref_notification_value), 0f)
